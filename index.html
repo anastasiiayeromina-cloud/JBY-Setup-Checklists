@@ -1,0 +1,240 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Montserrat',sans-serif;background:#fff;color:#1a1a1a;padding:0}
+
+.cover{background:#41647B;padding:48px 52px 40px;position:relative;overflow:hidden}
+.cover::after{content:'';position:absolute;right:-40px;bottom:-40px;width:220px;height:220px;border-radius:50%;border:35px solid rgba(255,255,255,0.05)}
+.cover-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:20px}
+.cover-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:#fff;line-height:1.15;margin-bottom:10px}
+.cover-title span{color:#CEC6B6}
+.cover-sub{font-size:12px;color:rgba(255,255,255,0.65);line-height:1.7;max-width:500px;margin-top:8px}
+.cover-meta{display:flex;gap:32px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.12)}
+.meta-item label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);display:block;margin-bottom:3px}
+.meta-item span{font-size:11px;color:rgba(255,255,255,0.8)}
+
+.progress-bar-wrap{padding:20px 52px;background:#f7f5f1;border-bottom:1px solid #ede9e3;display:flex;align-items:center;gap:20px}
+.progress-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#888;white-space:nowrap}
+.progress-track{flex:1;background:#e0dbd3;border-radius:20px;height:6px;overflow:hidden}
+.progress-fill{height:100%;background:#41647B;border-radius:20px;transition:width 0.4s}
+.progress-count{font-size:11px;color:#41647B;font-weight:500;white-space:nowrap}
+
+.content{padding:0 52px 52px}
+
+.section{margin-top:40px}
+.section-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:6px}
+.section-num{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#41647B;padding-top:4px;white-space:nowrap}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:#1a1a1a}
+.section-desc{font-size:12px;color:#777;line-height:1.7;margin-bottom:4px;padding-left:70px}
+.blocking{font-size:10px;color:#C46B46;letter-spacing:1px;text-transform:uppercase;margin-top:6px;padding-left:70px}
+
+.subsection{margin-top:20px;padding-left:70px}
+.subsection-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #ede9e3}
+
+.item{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:0.5px solid #f2efe9;cursor:pointer;transition:background 0.15s}
+.item:last-child{border-bottom:none}
+.item:hover{background:#faf9f7;margin:0 -8px;padding-left:8px;padding-right:8px;border-radius:4px}
+.item input[type=checkbox]{width:16px;height:16px;accent-color:#41647B;cursor:pointer;flex-shrink:0;margin-top:2px}
+.item-text{font-size:12px;color:#444;line-height:1.6;flex:1;font-weight:300}
+.item.done .item-text{color:#aaa;text-decoration:line-through}
+.item-note{font-size:10px;color:#888;font-style:italic;margin-top:2px}
+
+.note-box{background:#f7f5f1;border-left:3px solid #CEC6B6;padding:12px 16px;margin-top:12px;border-radius:0 4px 4px 0;font-size:11px;color:#666;line-height:1.6}
+.note-box strong{color:#41647B;font-weight:500}
+
+.divider{height:1px;background:#ede9e3;margin:40px 0 0}
+
+.footer{background:#f7f5f1;padding:20px 52px;display:flex;justify-content:space-between;align-items:center;margin-top:40px}
+.footer-l{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#aaa}
+.footer-l span{color:#41647B}
+.footer-r{font-size:10px;color:#aaa}
+</style>
+
+<div class="cover">
+  <div class="cover-tag">Jeff Brown Yachts — Website Build</div>
+  <div class="cover-title">Third-Party Setup <span>Checklists</span></div>
+  <div class="cover-sub">Master checklist of everything the YachtWay build team needs from JBY to complete the website build. Nothing listed here is optional — missing items will block design, development, or launch.</div>
+  <div class="cover-meta">
+    <div class="meta-item"><label>Maintained by</label><span>YachtWay Project Management</span></div>
+    <div class="meta-item"><label>Last updated</label><span>April 2026</span></div>
+    <div class="meta-item"><label>JBY contact</label><span>To be assigned</span></div>
+  </div>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-label">Overall progress</div>
+  <div class="progress-track"><div class="progress-fill" id="pFill" style="width:0%"></div></div>
+  <div class="progress-count" id="pCount">0 / 0 completed</div>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div class="section-title">Brand Assets</div>
+    </div>
+    <div class="section-desc">These are needed before any design work can begin. Without them, no page template can be finalized.</div>
+    <div class="blocking">Blocking: Homepage design, all page templates</div>
+    <div class="subsection">
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">Logo files in vector format (SVG preferred, AI or EPS also accepted)</div></div>
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">Logo files in PNG format (transparent background, multiple sizes)</div></div>
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">Brand color codes (HEX and/or RGB values)</div></div>
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">Brand fonts (font files or confirmation of which Google Fonts or Adobe Fonts are used)</div></div>
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">Any existing brand guidelines document</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title">Website Content & Copy</div>
+    </div>
+    <div class="section-desc">All written content for each page must be provided by JBY. Pages cannot be designed to final spec without real content.</div>
+    <div class="blocking">Blocking: All page design and development</div>
+
+    <div class="subsection">
+      <div class="subsection-title">Core Pages</div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Homepage: headline, subheadline, body copy, 2 CTAs text, any custom sections</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Service Page: full page copy and list of services offered</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Yacht Management Page: full page copy</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Locations Page: all office locations with addresses, phone numbers, and hours</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Location-Specific Pages: individual copy for each location (San Diego, Seattle, and any others)</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">General Contact Page: copy and any specific instructions</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Legal Pages: Privacy Policy, Terms and Conditions, Statement of Information (final approved text)</div></div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Brand Pages</div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Copy for each Brand Landing Page (Axopar, Wally, Riva, Pershing, Sirena, BRABUS, FOUR WINNS, Jeanneau)</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Confirmed list of all brands to be represented on the site</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Brands by Locations</div></div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Knowledge Center</div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Initial batch of articles, news posts, or how-to content (minimum recommended: 5–10 pieces)</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title">Media Content</div>
+    </div>
+    <div class="section-desc">Photography and video are required per brand and per team member. Partial delivery is not sufficient for launch.</div>
+    <div class="blocking">Blocking: Individual Team Member pages</div>
+
+    <div class="subsection">
+      <div class="subsection-title">Brand Photography</div>
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">Axopar: min. 5 exterior + 5 interior images per model, min. 1920×1080px, landscape, no watermarks</div></div>
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">Wally: same standard as above</div></div>
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">Riva: same standard as above</div></div>
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">Pershing: same standard as above</div></div>
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">Sirena: same standard as above</div></div>
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">BRABUS: same standard as above</div></div>
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">FOUR WINNS: same standard as above</div></div>
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">Jeanneau: same standard as above</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Confirmation of which brands currently have photography delivered and which are outstanding</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Mari-Time video for Home page</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Video for "Built Around the Owner" section on Home page</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Video for "Access to World-Class Brands" section on Home page</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Main hero video for Home page</div></div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Team Photography & Bios</div>
+      <div class="item done"><input type="checkbox" checked onchange="update()"><div class="item-text">Professional headshot for every team member (high resolution, landscape or square crop)</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Decision: add written bio per team member, or use existing content from current website?</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Broker profiles: confirmation of which team members have active listings</div></div>
+      <div class="note-box"><strong>Note:</strong> Team headshots and names will be pulled from the current JBY website. No action needed unless JBY wants to add or update anything.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div class="section-title">Crisp Live Chat & WhatsApp Business</div>
+    </div>
+    <div class="section-desc">JBY must create and own these accounts. The build team integrates them but cannot create accounts on JBY's behalf.</div>
+    <div class="blocking">Blocking: Live chat integration, WhatsApp widget, AI Support Agent configuration</div>
+
+    <div class="subsection">
+      <div class="subsection-title">Crisp</div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Crisp workspace created at crisp.chat using a JBY business email</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Plus plan subscribed (€295/month) — required for AI agent, white-labeling, and WhatsApp connection <span style="color:#C46B46;font-size:10px;font-weight:500">NOT REQUIRED NOW</span></div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">AI Support Agent name decided (name visible to site visitors)</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">YachtWay build team added as operator in the Crisp workspace</div></div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">WhatsApp Business API</div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Meta Business Manager account created or confirmed at business.facebook.com</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Business verification completed with Meta (submit business registration or tax ID)</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Business domain verified inside Meta Business Manager</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">WhatsApp Business Account (WABA) created under Accounts > WhatsApp Accounts</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Dedicated phone number added to WABA (must not be registered on any existing WhatsApp account)</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Payment method linked in WhatsApp Manager</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">WhatsApp Business Account ID shared with YachtWay build team</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Meta system user access token shared with YachtWay build team</div></div>
+      <div class="note-box"><strong>Note:</strong> Meta business verification takes 2–5 business days.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <div class="section-title">Google Analytics & Google Tag Manager</div>
+    </div>
+    <div class="section-desc">Both accounts must be owned by a JBY company email, not a personal or agency email. This ensures JBY retains full ownership of historical data permanently.</div>
+    <div class="blocking">Blocking: Analytics setup, conversion tracking, behavioral reporting</div>
+
+    <div class="subsection">
+      <div class="subsection-title">If JBY already has these accounts</div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Confirm GA4 property is owned by a JBY company Google account</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Confirm GTM container is owned by a JBY company Google account</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Grant YachtWay build team Editor access to GA4</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Grant YachtWay build team Editor access to GTM</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Share GA4 Measurement ID (format: G-XXXXXXXXXX)</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Share GTM Container ID (format: GTM-XXXXXXX)</div></div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">If JBY does not have these accounts yet</div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Create a Google account using a JBY company email</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Create GA4 property at analytics.google.com</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Create GTM container at tagmanager.google.com</div></div>
+      <div class="item"><input type="checkbox" onchange="update()"><div class="item-text">Share access with YachtWay build team (build team will handle all configuration)</div></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-l"><span>Jeff Brown Yachts</span> — Website Build Checklist</div>
+  <div class="footer-r">Maintained by YachtWay · Last updated April 2026</div>
+</div>
+
+<script>
+function update(){
+  const all=document.querySelectorAll('input[type=checkbox]');
+  const done=[...all].filter(c=>c.checked).length;
+  const total=all.length;
+  document.getElementById('pFill').style.width=(done/total*100)+'%';
+  document.getElementById('pCount').textContent=done+' / '+total+' completed';
+  all.forEach(cb=>{
+    const item=cb.closest('.item');
+    if(cb.checked) item.classList.add('done');
+    else item.classList.remove('done');
+  });
+}
+update();
+</script>
